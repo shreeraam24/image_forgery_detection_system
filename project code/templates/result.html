@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Forgery Detection - Result</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --background-color: #f0f8ff;
+            --card-background: rgba(255, 255, 255, 0.8);
+            --text-color: #2c3e50;
+            --border-color: #bde0fe;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #e0f7ff 0%, #87cefa 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--card-background);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .result-image {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .result-image img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-info {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .result-info h3 {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .metadata {
+            margin-top: 2rem;
+            background-color: #ffffff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .metadata pre {
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #333;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .back-btn, .analyze-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .back-btn:hover, .analyze-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(41, 128, 185, 0.3);
+        }
+
+        .back-btn {
+            background-color: var(--secondary-color);
+        }
+
+        .back-btn:hover {
+            background-color: #27ae60;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Image Forgery Detection - Result</h1>
+
+        <!-- Display uploaded image -->
+        <div class="result-image">
+            <img src="{{ url_for('display_image', filename=filename) }}" alt="Uploaded Image">
+        </div>
+
+        <!-- Display the result (forgery type and confidence) -->
+        <div class="result-info">
+            <h3>Detection Result:</h3>
+            <p><strong>Forgery Type:</strong> {{ result }}</p>
+            <p><strong>Confidence:</strong> {{ confidence }}%</p>
+        </div>
+
+        <!-- Display metadata if available -->
+        <div class="metadata">
+            <h3>Metadata Information:</h3>
+            <pre>{{ metadata }}</pre>
+        </div>
+
+        <!-- Buttons to analyze another image or go back -->
+        <div class="button-container">
+            <a href="/" class="back-btn">Go Back</a>
+            <a href="/" class="analyze-btn">Analyze Another Image</a>
+        </div>
+    </div>
+</body>
+</html>
